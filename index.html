@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Curso de modelos AI — lanzamiento desde cero en 30 minutos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lanza tu modelo AI en 30 minutos desde el móvil y construye un sistema que pueda llevarte a tus primeros $300–$1 000 al mes con contenido de pago. Pago del curso sólo en USDT." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #020617;
+      --card: #0b1020;
+      --accent: #6366f1;
+      --accent2: #a855f7;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 22px 55px rgba(15, 23, 42, 0.9);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #111827 0, #020617 45%, #020617 100%);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 20px 16px 64px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom,
+        rgba(2, 6, 23, 0.98),
+        rgba(2, 6, 23, 0.85),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 0.06em;
+    }
+
+    .logo-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: conic-gradient(from 120deg, #22c55e, #6366f1, #a855f7, #22c55e);
+      box-shadow: 0 0 22px rgba(129, 140, 248, 0.9);
+    }
+
+    .nav-cta {
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 38px rgba(88, 80, 236, 0.7);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 48px rgba(79, 70, 229, 0.9);
+      opacity: 0.96;
+    }
+
+    .hero { margin-top: 32px; margin-bottom: 40px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 26px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px 4px 4px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    .hero-tag-dot {
+      width: 22px; height: 22px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #22c55e, #16a34a 50%, #14532d);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.85);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4.2vw, 42px);
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .hero-title span {
+      background: linear-gradient(120deg, #6366f1, #a855f7, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      max-width: 520px;
+    }
+
+    .hero-bullets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .hero-badge {
+      font-size: 13px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .btn-primary {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 24px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 22px 50px rgba(79, 70, 229, 0.9);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 60px rgba(67, 56, 202, 1);
+      opacity: 0.96;
+    }
+
+    .btn-ghost {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      gap: 8px;
+      transition: 0.15s ease;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .hero-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .hero-note span { color: var(--success); font-weight: 500; }
+
+    .hero-right {
+      background: radial-gradient(circle at top, rgba(79, 70, 229, 0.45), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(6, 182, 212, 0.35), transparent 60%),
+                  linear-gradient(145deg, #020617, #020617);
+      border-radius: 26px;
+      padding: 14px 14px 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-chip {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .hero-video {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #020617;
+      padding: 9px;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
+
+    .hero-panel {
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 10px 12px 12px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .hero-panel h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+    }
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .hero-pill {
+      font-size: 11px;
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+    }
+
+    .hero-price-card {
+      margin-top: 6px;
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 60%),
+                  rgba(15, 23, 42, 0.97);
+      border-radius: 16px;
+      padding: 9px 12px 10px;
+      border: 1px solid rgba(34, 197, 94, 0.6);
+      font-size: 13px;
+    }
+    .hero-price-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+    .hero-price-main { font-size: 20px; font-weight: 700; }
+    .hero-price-label { font-size: 12px; color: var(--muted); }
+    .hero-price-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .hero-price-badge {
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15,23,42,0.97);
+      color: var(--muted);
+    }
+
+    section { margin-bottom: 42px; }
+
+    section:not(.hero) {
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      padding-top: 26px;
+      border-radius: 22px;
+      padding-inline: 10px;
+    }
+    section:not(.hero):nth-of-type(even) {
+      background: radial-gradient(circle at top, rgba(79,70,229,0.18), transparent 60%);
+    }
+    section:not(.hero):nth-of-type(odd) {
+      background: radial-gradient(circle at top, rgba(34,197,94,0.16), transparent 60%);
+    }
+
+    .section-title { font-size: 22px; margin-bottom: 6px; text-align:left; }
+    .section-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      max-width: 620px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.9);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .list-check {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+      font-size: 14px;
+    }
+    .list-check li::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .img-mock {
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 1);
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 12px;
+      background: #020617;
+    }
+
+    .program-accordion {
+      display: grid;
+      gap: 8px;
+    }
+    details.module-item {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 8px 11px 9px;
+      background: rgba(15, 23, 42, 0.98);
+      cursor: pointer;
+      font-size: 14px;
+    }
+    details.module-item[open] {
+      border-color: rgba(129, 140, 248, 0.9);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 1);
+    }
+    summary.module-summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      outline: none;
+    }
+    summary.module-summary::-webkit-details-marker { display:none; }
+    .module-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+    }
+    .module-body {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .program-result {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .program-result strong {
+      color: var(--success);
+    }
+    .program-result ul {
+      margin: 4px 0 0 18px;
+      padding: 0;
+    }
+    .program-result ul li {
+      margin-bottom: 2px;
+    }
+
+    .author-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 18px;
+      align-items: center;
+    }
+    .author-badge {
+      font-size: 12px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15,23,42,0.95);
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .author-photo {
+      position: relative;
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .author-avatar {
+      display:none;
+    }
+    .author-tag-card {
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      transform: translateY(50%);
+      background: rgba(15,23,42,0.98);
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.5);
+      padding: 6px 9px;
+      font-size: 11px;
+      color: var(--muted);
+      box-shadow: 0 16px 40px rgba(15,23,42,1);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.95);
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .results-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .results-num {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--success);
+    }
+
+    .review-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 12px 12px 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.95);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .review-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .review-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr);
+      gap: 6px;
+    }
+    .review-col {
+      padding: 7px 8px;
+      border-radius: 10px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.35);
+    }
+    .review-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+    }
+    .review-label.before { color: #fecaca; }
+    .review-label.after { color: #bbf7d0; }
+
+    .inline-cta {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .pay-link-inline {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 6px 14px;
+      margin-left: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #4ade80, #22c55e);
+      color:#0b1120;
+      font-weight:600;
+      font-size:13px;
+      box-shadow: 0 12px 24px rgba(34,197,94,0.6);
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    details.faq-item {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 7px 11px;
+      margin-bottom: 8px;
+      background: rgba(15, 23, 42, 0.98);
+      cursor: pointer;
+      font-size: 14px;
+    }
+    details.faq-item[open] {
+      border-color: rgba(129, 140, 248, 0.9);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 1);
+    }
+    summary.faq-q {
+      list-style: none;
+      font-weight: 600;
+      font-size: 14px;
+      outline: none;
+    }
+    summary.faq-q::-webkit-details-marker { display: none; }
+    .faq-q-icon { display: inline-block; margin-right: 6px; color: var(--accent); }
+    .faq-a { font-size: 14px; color: var(--muted); margin-top: 5px; }
+
+    footer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0.8;
+    }
+    footer a { color: var(--muted); text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .author-wrap {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-right { margin-top: 14px; }
+      .grid-2, .grid-3 { grid-template-columns: minmax(0, 1fr); }
+      section:not(.hero) { padding-inline: 8px; }
+    }
+    @media (max-width: 720px) {
+      .page { padding-inline: 14px; }
+      .hero-title { font-size: 28px; }
+      .hero-subtitle { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div>AI MODEL COURSE</div>
+      </div>
+      <button class="nav-cta" onclick="location.href='pay.html';">
+        Pagar el curso
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tag">
+            <div class="hero-tag-dot"></div>
+            Primera edición • acceso inmediato después de pagar en USDT
+          </div>
+          <h1 class="hero-title">
+            Lanza tu <span>modelo AI en 30 minutos</span> desde el móvil<br />y apunta a tus primeros $300–$1&nbsp;000 al mes
+          </h1>
+          <p class="hero-subtitle">
+            Sin marca personal, sin grabar 24/7 y sin configuraciones técnicas complicadas. Un sistema paso a paso con foco en pagos reales en USDT.
+          </p>
+          <div class="hero-bullets">
+            <div class="hero-badge">🧠 No necesitas experiencia en IA</div>
+            <div class="hero-badge">📱 Todo se hace desde un smartphone normal</div>
+            <div class="hero-badge">🌍 Puedes trabajar desde cualquier país</div>
+            <div class="hero-badge">💰 Pago del curso en USDT</div>
+          </div>
+          <div class="hero-actions">
+            <a href="pay.html" class="btn-primary">
+              Pagar el curso por 19 USDT
+            </a>
+            <a href="#how" class="btn-ghost">
+              ▶ Cómo funciona
+            </a>
+          </div>
+          <div class="hero-note">
+            <span>Ahora:</span> precio de la primera edición — <b>19 USDT</b>. Más adelante el precio subirá.
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="hero-chip">
+            📊 Vídeo corto: «primer modelo AI en 30 minutos»
+          </div>
+
+          <!-- VÍDEO: promo.mp4 -->
+          <div class="hero-video">
+            <video src="promo.mp4"
+                   controls
+                   poster="platform-screen.jpg"
+                   style="width:100%;border-radius:14px;display:block;">
+              Tu navegador no soporta vídeo.
+            </video>
+          </div>
+
+          <div class="hero-panel">
+            <h3>Qué tendrás en tus manos después del curso</h3>
+            <div>
+              ✓ tu modelo AI, que se ve como una chica real;<br />
+              ✓ perfil montado y embudo básico listo;<br />
+              ✓ un plan claro de cómo llegar a unos $300–$1&nbsp;000/mes.
+            </div>
+            <div class="hero-pill-row">
+              <div class="hero-pill">Fotos y vídeos con IA</div>
+              <div class="hero-pill">Monetización conectada</div>
+              <div class="hero-pill">Trabajo en la sombra</div>
+            </div>
+          </div>
+          <div class="hero-price-card">
+            <div class="hero-price-top">
+              <div>
+                <div class="hero-price-label">Precio ahora</div>
+                <div class="hero-price-main">19 USDT</div>
+              </div>
+              <div class="hero-price-badges">
+                <div class="hero-price-badge">Pago sólo en USDT</div>
+                <div class="hero-price-badge">Acceso inmediato</div>
+              </div>
+            </div>
+            <div>Después de los primeros grupos subiré el precio del curso.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section id="how">
+      <h2 class="section-title">Cómo funciona</h2>
+      <p class="section-subtitle">
+        El esquema es simple: modelo AI → atención → plataforma de pago → ingresos en USDT. Dentro hay una serie de pasos que sólo tienes que repetir.
+      </p>
+
+      <!-- IMAGEN DE LA PLATAFORMA: screen1.jpg -->
+      <div class="img-mock">
+        <img src="screen1.jpg"
+             alt="Cómo funciona el sistema de modelos AI"
+             style="width:100%;display:block;">
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>El esquema completo</h3>
+          <ul class="list-check">
+            <li>Creas una chica digital realista (fotos + vídeos cortos).</li>
+            <li>Montas un perfil que se vea vivo, no “hecho con IA”.</li>
+            <li>Conectas una plataforma de pago con suscripción y contenido privado.</li>
+            <li>Lanzas una rutina diaria sencilla: contenido + chats.</li>
+            <li>Recibes pagos en USDT y decides si guardas, retiras o reinviertes.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Qué vas a ver en las lecciones</h3>
+          <ul class="list-check">
+            <li>Grabaciones de pantalla desde el móvil: sin programas complicados ni edición pesada.</li>
+            <li>Plantillas de prompts para distintos estilos y tipos de modelo.</li>
+            <li>Ejemplos de mensajes que llevan a pagos, no a charlas eternas.</li>
+            <li>Una hoja sencilla para llevar control: cuánto genera el modelo y qué tocar para mejorar.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMA -->
+    <section id="program">
+      <h2 class="section-title">Programa del curso: paso a paso</h2>
+      <p class="section-subtitle">
+        Cada módulo es un bloque de acciones. Haces clic, despliegas, accionas — con un plan claro que es fácil de repetir.
+      </p>
+      <div class="program-accordion">
+        <!-- Módulo 0 -->
+        <details class="module-item" open>
+          <summary class="module-summary">
+            <span class="module-badge">Módulo 0</span>
+            Fundamentos y seguridad
+          </summary>
+          <div class="module-body">
+            <p>
+              Cómo funciona el negocio de modelos AI, qué riesgos existen, qué se puede hacer y qué no, para no perder la cuenta ni volarte de la plataforma.
+            </p>
+            <div class="program-result">
+              <strong>Resultado:</strong>
+              <ul>
+                <li>entiendes cómo gana dinero todo el esquema — desde la generación de contenido hasta los pagos en USDT;</li>
+                <li>sabes las reglas básicas de las plataformas: qué tipo de contenido no subir y por qué bloquean cuentas;</li>
+                <li>tienes un checklist de «qué revisar antes de lanzar» (geo, edad, frases, tipo de contenido);</li>
+                <li>ves en qué casos es mejor no entrar en el tema para no complicarte la vida.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Módulo 1 -->
+        <details class="module-item">
+          <summary class="module-summary">
+            <span class="module-badge">Módulo 1</span>
+            Personaje y concepto del modelo
+          </summary>
+          <div class="module-body">
+            <p>
+              Elegimos el tipo de modelo (estética / contenido suave / lifestyle), país, carácter, historia. Vemos qué estilos son más fáciles de monetizar hoy.
+            </p>
+            <div class="program-result">
+              <strong>Resultado:</strong>
+              <ul>
+                <li>has elegido el formato de modelo: aspecto, estilo, geo y nivel de “picante”;</li>
+                <li>tienes personalidad e historia del personaje: quién es, qué hace y por qué la gente quiere seguirla;</li>
+                <li>tienes un retrato corto de la audiencia: quién paga, por qué paga y qué no espera de la modelo;</li>
+                <li>hay 2–3 ideas de modelos de reserva para lanzar más adelante si quieres ampliar el portfolio.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Módulo 2 -->
+        <details class="module-item">
+          <summary class="module-summary">
+            <span class="module-badge">Módulo 2</span>
+            Creación de la modelo AI desde el móvil
+          </summary>
+          <div class="module-body">
+            <p>
+              Elegimos apps, generamos una serie de fotos y vídeos realistas y ajustamos cara y cuerpo para que la modelo no cambie en cada imagen.
+            </p>
+            <div class="program-result">
+              <strong>Resultado:</strong>
+              <ul>
+                <li>tienes una carpeta con decenas de fotos realistas y varios vídeos cortos de la misma modelo;</li>
+                <li>has guardado prompts y presets que te permiten generar más contenido en el mismo estilo cuando quieras;</li>
+                <li>usas 1–2 apps que te resultan cómodas desde el teléfono;</li>
+                <li>entiendes cómo no pasarte con el “look IA” para que la modelo se vea lo más humana posible.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Módulo 3 -->
+        <details class="module-item">
+          <summary class="module-summary">
+            <span class="module-badge">Módulo 3</span>
+            Montaje del perfil
+          </summary>
+          <div class="module-body">
+            <p>
+              Bio, nick, descripción, visual, primeros 14 días de contenido. Cómo no parecer fake, generar confianza y llevar a la suscripción de pago.
+            </p>
+            <div class="program-result">
+              <strong>Resultado:</strong>
+              <ul>
+                <li>perfil completo: avatar, nick, descripción, enlaces, grid visual;</li>
+                <li>plan de posts para al menos 14 días: qué publicar y en qué orden;</li>
+                <li>2–3 variantes de descripción del perfil según enfoque (estético, lifestyle, formato más atrevido);</li>
+                <li>ves qué elementos del perfil impactan directo en la conversión a suscripción y pago.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Módulo 4 -->
+        <details class="module-item">
+          <summary class="module-summary">
+            <span class="module-badge">Módulo 4</span>
+            Monetización: suscripción y privados
+          </summary>
+          <div class="module-body">
+            <p>
+              Elegimos y conectamos la plataforma de pago, fijamos precios, descripciones, mensajes de bienvenida y niveles de acceso. Por qué la gente paga con más gusto.
+            </p>
+            <div class="program-result">
+              <strong>Resultado:</strong>
+              <ul>
+                <li>has elegido y conectado un servicio concreto por el que la gente puede pagar por el contenido;</li>
+                <li>tienes precios configurados para suscripción y materiales privados en un rango lógico para tu formato;</li>
+                <li>mensajes de bienvenida y mini embudo configurados: qué ve la persona justo después de suscribirse;</li>
+                <li>lista de contenido de pago: qué se queda gratis y qué se ofrece sólo a quien paga.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Módulo 5 -->
+        <details class="module-item">
+          <summary class="module-summary">
+            <span class="module-badge">Módulo 5</span>
+            Rutina diaria de 30–60 minutos
+          </summary>
+          <div class="module-body">
+            <p>
+              Cuánto y qué publicar, cómo chatear y cómo llevar a la gente hacia el pago. Cómo encajar todo en una hora al día sin que se convierta en un segundo trabajo.
+            </p>
+            <div class="program-result">
+              <strong>Resultado:</strong>
+              <ul>
+                <li>checklist diario claro: qué hacer por la mañana/noche para que el modelo no muera en actividad;</li>
+                <li>ves el volumen mínimo de acciones: cuántos posts, stories y chats tiene sentido mantener;</li>
+                <li>tienes plantillas de mensajes para «hola», «calentamiento», «cierre de venta» y «renovación de suscripción»;</li>
+                <li>entiendes cómo encajar el trabajo con la modelo en 30–60 minutos al día sin quemarte.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <!-- Módulo 6 -->
+        <details class="module-item">
+          <summary class="module-summary">
+            <span class="module-badge">Módulo 6</span>
+            Escalar y delegar
+          </summary>
+          <div class="module-body">
+            <p>
+              Cuándo lanzar un segundo y tercer modelo, cómo diferenciarlos por nicho y qué tareas se pueden delegar para no estar 24/7 en el chat.
+            </p>
+            <div class="program-result">
+              <strong>Resultado:</strong>
+              <ul>
+                <li>sabes qué números mirar para decidir si escalar un modelo o añadir otro;</li>
+                <li>lista de tareas delegables: generación de contenido, parte de los chats, cosas técnicas;</li>
+                <li>un boceto de plan para lanzar 2–3 modelos que no compitan entre sí;</li>
+                <li>ves cómo convertir esto en un portfolio de activos digitales y no en “otra temática más”.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+      <div class="inline-cta">
+        ¿Quieres pasar por todos los módulos y montar el sistema a tu manera?
+        <a href="pay.html" class="pay-link-inline">Pagar el curso en USDT</a>
+      </div>
+    </section>
+
+    <!-- QUIÉN SOY -->
+    <section id="author">
+      <h2 class="section-title" style="text-align:center;">Quién soy yo</h2>
+      <div style="text-align:center; max-width:720px; margin:0 auto 18px; color:var(--muted);">
+        <p><strong>Me llamo Daniel.</strong></p>
+        <p>
+          Desde joven buscaba una forma de ganar dinero online sin estar pegado a una oficina 24/7.
+          Probé edición de vídeo, freelance, arbitraje, cripto, Shopify, Amazon US.
+        </p>
+        <p>
+          Llegué a ganar mis <strong>2–3 mil euros al mes</strong>, pero siempre acababa quemado — informes, tablas, deadlines, clientes encima.
+          Vivía en estrés constante y cada vez pensaba: «Sé que puedo hacerlo de otra manera».
+        </p>
+      </div>
+      <div class="author-wrap">
+        <div>
+          <div class="author-badge">Hoy la historia es distinta</div>
+          <div class="card">
+            <p>
+              Ahora trabajo con sistemas online que pueden generar dinero incluso cuando no estoy “en turno”.
+              Uno de esos sistemas son los modelos AI con contenido de pago y suscripciones.
+            </p>
+            <p style="margin-top:6px;">
+              Mi objetivo con este curso es simple: mostrarte un <strong>modelo concreto de ingresos</strong> sin promesas vacías.
+              No “serás millonario en una semana”, sino un camino honesto — desde el primer modelo AI hasta ingresos razonables en USDT.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="author-photo">
+            <!-- FOTO DEL AUTOR: author.jpg -->
+            <img src="author.jpg"
+                 alt="Autor del curso"
+                 style="width:100%;border-radius:999px;display:block;box-shadow:0 22px 60px rgba(15,23,42,1);">
+            <div class="author-tag-card">
+              Daniel<br />creador del curso
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EN QUÉ SE DIFERENCIA -->
+    <section id="difference">
+      <h2 class="section-title">En qué se diferencia este sistema de “otro curso más de IA”</h2>
+      <p class="section-subtitle">
+        No es un maratón de motivación. Toda la lógica gira alrededor de una pregunta: dónde y cómo aparece el dinero.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="pill">1. El dinero en el centro</div>
+          <p>No hablamos de “qué bonito dibuja la IA”. Atamos todo a suscripciones, privados, ticket medio y pagos repetidos.</p>
+        </div>
+        <div class="card">
+          <div class="pill">2. Acciones concretas</div>
+          <p>Cada módulo es una lista de tareas: qué pulsar, qué generar, qué publicar. No hay charlas motivacionales interminables.</p>
+        </div>
+        <div class="card">
+          <div class="pill">3. Sistema, no “temita”</div>
+          <p>El modelo AI es tu activo digital. Primero uno. Luego varios modelos y, si quieres, asistentes. Eso ya se parece a un negocio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section id="results">
+      <h2 class="section-title">A qué resultados puedes apuntar</h2>
+      <p class="section-subtitle">
+        Son referencias, no promesas. Las cifras concretas dependen del nicho, tus acciones y el número de modelos.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="results-card-title">Primera etapa</div>
+          <div class="results-num">+300–500 USDT/mes</div>
+          <p>Un modelo AI estable con suscripción de pago y privados ocasionales. Fijas tu primer resultado serio.</p>
+        </div>
+        <div class="card">
+          <div class="results-card-title">Segunda etapa</div>
+          <div class="results-num">≈1 000 USDT/mes</div>
+          <p>Un modelo fuerte o 2–3 modelos más sencillos. Delegas parte de la generación y de los chats, y tú te quedas con los números.</p>
+        </div>
+        <div class="card">
+          <div class="results-card-title">Después, según tú</div>
+          <div class="results-num">1 000+ USDT/mes</div>
+          <p>Varios modelos, asistentes y analítica clara. Ya no es un “experimento”, sino un sistema que puedes desarrollar años.</p>
+        </div>
+      </div>
+      <div class="inline-cta">
+        ¿Te gustan estas referencias de ingresos?
+        <a href="pay.html" class="pay-link-inline">Ir a la página de pago</a>
+      </div>
+    </section>
+
+    <!-- PAGO (descripción) -->
+    <section id="payment">
+      <h2 class="section-title">Cómo funciona el pago y el acceso</h2>
+      <p class="section-subtitle">
+        Sin burocracia. La regla principal: enviar USDT exactamente con los datos que verás en la página de pago.
+      </p>
+      <div class="card">
+        <h3>5 pasos hasta el acceso</h3>
+        <ol class="list-check" style="counter-reset:none; list-style:decimal; margin-left:18px;">
+          <li>En esta web eliges el curso y pasas a la página de pago.</li>
+          <li>Ahí verás la dirección de la wallet, el importe y la red (TRC20).</li>
+          <li>Envías los USDT <b>exactamente en la red indicada</b> desde tu wallet o exchange.</li>
+          <li>Rellenas un formulario corto: email + hash de la TX (identificador de la transferencia).</li>
+          <li>En un plazo de hasta 24 horas reviso la transacción y te envío el acceso al curso.</li>
+        </ol>
+        <p style="font-size:13px; margin-top:8px;">
+          Si nunca has usado cripto y no quieres aprender lo básico, este producto todavía no es para ti.
+          El curso está pensado para gente que ya vive en USDT o trabaja tranquila con wallets de cripto.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-q-icon">+</span>¿Y si no sé nada de IA?</summary>
+        <div class="faq-a">
+          No pasa nada. En el curso no aprendes código. Aprendes a usar servicios listos que ya generan fotos y vídeos.
+          Tu trabajo es elegir el personaje y ajustarlo bien.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-q-icon">+</span>¿Esto no es humo ni estafa?</summary>
+        <div class="faq-a">
+          No prometo “un millón en una semana”. Te doy un esquema de trabajo que requiere acciones.
+          Si buscas un botón mágico, mejor no entres. Si estás listo para hacer y ajustar, te va a encajar mucho mejor.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-q-icon">+</span>¿Cuánto tiempo necesitaré al día?</summary>
+        <div class="faq-a">
+          Para lanzar el primer modelo — unas cuantas tardes enfocadas.  
+          Para mantener y crecer — de 30 a 60 minutos al día. Dentro del curso verás un ejemplo de rutina diaria.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-q-icon">+</span>¿Se puede sin contenido duro?</summary>
+        <div class="faq-a">
+          Sí. Puedes hacer formatos más suaves y estéticos o llevar al personaje AI como si fuera una influencer de lifestyle / experta.
+          En el curso te doy variantes para cambiar el enfoque si quieres evitar cosas muy explícitas.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q"><span class="faq-q-icon">+</span>Si no me gusta, ¿puedo pedir devolución?</summary>
+        <div class="faq-a">
+          Durante 7 días después del pago, si has visto menos del 20% del curso y ves que el formato no encaja contigo —
+          escríbeme a <b>AI_model@gmail.com</b> o al Telegram <b>@ai_model_support</b>.  
+          Vemos la situación y tomamos una decisión sobre el reembolso. No tiene sentido mantener dentro a quien no le sirve nada.
+        </div>
+      </details>
+
+      <div style="margin-top:18px; text-align:center;">
+        <a href="pay.html" class="btn-primary">Pagar el curso y obtener acceso</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> AI Model Course.  
+      Contacto: <a href="mailto:AI_model@gmail.com">AI_model@gmail.com</a> • Telegram: <a href="https://t.me/ai_model_support" target="_blank">@ai_model_support</a><br/>
+      No es garantía de ingresos. Todos los resultados dependen de tus acciones.
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

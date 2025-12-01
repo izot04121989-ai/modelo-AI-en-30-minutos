@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pago del curso — Modelos AI y USDT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="Página de pago del curso de modelos AI. Envía 19 USDT y deja tus datos para recibir acceso." />
+
+  <!-- Meta Pixel (sustituye YOUR_PIXEL_ID por tu ID real) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src='https://connect.facebook.net/en_US/fbevents.js';
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+    fbq('track', 'InitiateCheckout', {value: 19.00, currency: 'USD'});
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- /Meta Pixel -->
+
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #050b1b;
+      --accent: #22c55e;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius: 14px;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 38%, #000 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      padding: 12px 0 8px;
+    }
+
+    .logo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .logo-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #4ade80, #16a34a 55%, #022c22);
+      box-shadow: 0 0 22px rgba(34, 197, 94, 0.7);
+    }
+
+    .logo-text {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .chip {
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .card {
+      margin-top: 12px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: var(--shadow);
+      padding: 18px 16px 16px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .highlight {
+      background: rgba(34, 197, 94, 0.08);
+      border-radius: 10px;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      padding: 10px 10px 8px;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .highlight strong {
+      color: #bbf7d0;
+    }
+
+    .addr {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+      font-size: 12px;
+      color: #e5e7eb;
+      word-break: break-all;
+      margin-top: 4px;
+    }
+
+    .form {
+      margin-top: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 12px 10px 10px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .form h2 {
+      font-size: 15px;
+      margin: 0 0 8px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px 9px;
+      border-radius: 8px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      font-size: 13px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: rgba(34, 197, 94, 0.7);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #020617;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+      text-decoration: none;
+    }
+
+    .btn-primary span {
+      margin-left: 6px;
+      font-size: 15px;
+    }
+
+    .note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: rgba(2, 6, 23, 0.95);
+    }
+
+    .footer-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 16px 16px 26px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .footer-inner a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-inner a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <header>
+        <div class="logo-row">
+          <div class="logo-left">
+            <div class="logo-mark"></div>
+            <div class="logo-text">pago del curso</div>
+          </div>
+          <div class="chip">Importe: 19&nbsp;USDT</div>
+        </div>
+      </header>
+
+      <main>
+        <div class="card">
+          <h1>Pago del curso de modelos AI</h1>
+          <p>
+            A continuación tienes los datos para enviar <strong>19&nbsp;USDT</strong> y un pequeño
+            formulario para que pueda identificar tu pago y enviarte el acceso al curso.
+          </p>
+
+          <div class="highlight">
+            <strong>1. Envía 19&nbsp;USDT en la red TRC20</strong>
+            <ul>
+              <li>Moneda: USDT</li>
+              <li>Red: TRC20</li>
+              <li>Importe: 19&nbsp;USDT</li>
+            </ul>
+            <div>Dirección para el pago:</div>
+            <div class="addr">TCKVrGqp9MgmaQHhWQ3RgEJYALtU7uUvbo</div>
+          </div>
+
+          <div class="highlight" style="margin-bottom: 16px;">
+            <strong>2. Guarda el hash de la transacción</strong>
+            <p>
+              Cuando el pago se confirme, copia el identificador (hash) de la transacción.
+              Es la forma más fácil de comprobar tu pago.
+            </p>
+          </div>
+
+          <div class="form">
+            <h2>3. Deja tus datos para el acceso</h2>
+            <p>
+              Completa el formulario después de enviar los 19&nbsp;USDT.  
+              Revisaré el pago y te mandaré el acceso al curso.
+            </p>
+
+            <form id="payForm">
+              <label for="email">Tu correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+
+              <label for="wallet">Tu billetera o usuario (opcional)</label>
+              <input type="text" id="wallet" name="wallet" placeholder="USDT wallet, usuario de plataforma, etc." />
+
+              <label for="tx">Hash de la transacción (TXID)</label>
+              <textarea id="tx" name="tx" rows="2"
+                        placeholder="Pega aquí el hash de tu pago en USDT" required></textarea>
+
+              <button type="submit" class="btn-primary">
+                Ya he enviado los 19&nbsp;USDT <span>→</span>
+              </button>
+              <div class="note">
+                En esta versión estática tus datos no se envían automáticamente a un servidor.  
+                Después de rellenar el formulario, escríbeme también a <strong>AI_model@gmail.com</strong> o al Telegram <strong>@ai_model_support</strong> con tu email y TXID.
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div>© 2025 AI Model Course.</div>
+        <div>
+          Soporte: <a href="mailto:AI_model@gmail.com">AI_model@gmail.com</a>
+          &nbsp;|&nbsp; Telegram: <a href="https://t.me/ai_model_support" target="_blank">@ai_model_support</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simulación de envío: redirige a la página de gracias
+    document.getElementById('payForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      try {
+        fbq('track', 'Purchase', {value: 19.00, currency: 'USD'});
+      } catch (err) {}
+      window.location.href = 'thankyou.html';
+    });
+  </script>
+</body>
+</html>
